@@ -1,0 +1,28 @@
+[2023-05-12T19:03:11.230+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gnews_covid_dag.extract manual__2023-05-12T19:03:08.191033+00:00 [queued]>
+[2023-05-12T19:03:11.241+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gnews_covid_dag.extract manual__2023-05-12T19:03:08.191033+00:00 [queued]>
+[2023-05-12T19:03:11.242+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T19:03:11.242+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-05-12T19:03:11.248+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T19:03:11.315+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): extract> on 2023-05-12 19:03:08.191033+00:00
+[2023-05-12T19:03:11.320+0000] {standard_task_runner.py:55} INFO - Started process 13236 to run task
+[2023-05-12T19:03:11.324+0000] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'gnews_covid_dag', 'extract', 'manual__2023-05-12T19:03:08.191033+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpxpkbdhio']
+[2023-05-12T19:03:11.327+0000] {standard_task_runner.py:83} INFO - Job 8: Subtask extract
+[2023-05-12T19:03:11.371+0000] {logging_mixin.py:137} WARNING - /opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/airflow/settings.py:250 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2023-05-12T19:03:11.429+0000] {task_command.py:389} INFO - Running <TaskInstance: gnews_covid_dag.extract manual__2023-05-12T19:03:08.191033+00:00 [running]> on host ae84a291cf74
+[2023-05-12T19:03:11.563+0000] {taskinstance.py:1516} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=gnews_covid_dag
+AIRFLOW_CTX_TASK_ID=extract
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-12T19:03:08.191033+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-12T19:03:08.191033+00:00
+[2023-05-12T19:03:11.566+0000] {extract.py:57} INFO - Getting news from the GNews API... 
+
+[2023-05-12T19:03:20.445+0000] {extract.py:23} ERROR - Article `download()` failed with 403 Client Error: Forbidden for url: https://bitcoinmagazine.com/legal/u-s-congressman-sends-letter-to-sec-chair-calling-attention-to-gbtc-situation on URL https://news.google.com/rss/articles/CBMib2h0dHBzOi8vYml0Y29pbm1hZ2F6aW5lLmNvbS9sZWdhbC91LXMtY29uZ3Jlc3NtYW4tc2VuZHMtbGV0dGVyLXRvLXNlYy1jaGFpci1jYWxsaW5nLWF0dGVudGlvbi10by1nYnRjLXNpdHVhdGlvbtIBAA?oc=5&hl=en-US&gl=US&ceid=US:en
+[2023-05-12T19:03:24.257+0000] {extract.py:23} ERROR - Article `download()` failed with 403 Client Error: Max restarts limit reached for url: https://www.forbes.com/sites/digital-assets/2023/05/12/leak-reveals-secret-democrat-plan-for-a-game-changing-us-crypto-crackdown-that-could-hit-the-price-of-bitcoin-and-ethereum/ on URL https://news.google.com/rss/articles/CBMisgFodHRwczovL3d3dy5mb3JiZXMuY29tL3NpdGVzL2RpZ2l0YWwtYXNzZXRzLzIwMjMvMDUvMTIvbGVhay1yZXZlYWxzLXNlY3JldC1kZW1vY3JhdC1wbGFuLWZvci1hLWdhbWUtY2hhbmdpbmctdXMtY3J5cHRvLWNyYWNrZG93bi10aGF0LWNvdWxkLWhpdC10aGUtcHJpY2Utb2YtYml0Y29pbi1hbmQtZXRoZXJldW0v0gG2AWh0dHBzOi8vd3d3LmZvcmJlcy5jb20vc2l0ZXMvZGlnaXRhbC1hc3NldHMvMjAyMy8wNS8xMi9sZWFrLXJldmVhbHMtc2VjcmV0LWRlbW9jcmF0LXBsYW4tZm9yLWEtZ2FtZS1jaGFuZ2luZy11cy1jcnlwdG8tY3JhY2tkb3duLXRoYXQtY291bGQtaGl0LXRoZS1wcmljZS1vZi1iaXRjb2luLWFuZC1ldGhlcmV1bS9hbXAv?oc=5&hl=en-US&gl=US&ceid=US:en
+[2023-05-12T19:03:29.701+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-12T19:03:29.713+0000] {taskinstance.py:1327} INFO - Marking task as SUCCESS. dag_id=gnews_covid_dag, task_id=extract, execution_date=20230512T190308, start_date=20230512T190311, end_date=20230512T190329
+[2023-05-12T19:03:29.817+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-05-12T19:03:29.841+0000] {taskinstance.py:2596} INFO - 1 downstream tasks scheduled from follow-on schedule check

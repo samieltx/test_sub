@@ -1,0 +1,117 @@
+version: '3'
+services:
+
+  postgres-db:
+    image: postgres:13.2
+    container_name: ta-playground-postgres-db
+    environment:
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_MULTIPLE_DATABASES: "${POSTGRES_DB},${AIRFLOW_POSTGRES_DB}"
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: UTC
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./pg-init-scripts:/docker-entrypoint-initdb.d
+    expose:
+      - ${POSTGRES_PORT}
+    ports:
+      - ${POSTGRES_PORT}:${AIRFLOW_POSTGRES_PORT}
+    networks:
+      - tienda-amiga-network
+    restart: always
+
+
+  # AIRFLOW WEBSERVER
+  airflow-webserver:
+    container_name: ta-playground-airflow-ws
+    image: tienda-amiga-playground_base
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+#    network_mode: bridge
+    restart: always
+    environment:
+      POSTGRES_CONN_ID: ${POSTGRES_CONN_ID}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      AIRFLOW_POSTGRES_PORT: ${AIRFLOW_POSTGRES_PORT}
+      AIRFLOW__CORE__BASE_LOG_FOLDER: ${AIRFLOW_LOG_FOLDER}
+      AIRFLOW__CORE__DAGS_FOLDER: ${AIRFLOW_DAG_FOLDER}
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: 0
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: "${POSTGRES_DIALECT_DRIVER}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${AIRFLOW_POSTGRES_PORT}/${AIRFLOW_POSTGRES_DB}"
+      AIRFLOW__WEBSERVER__WEB_SERVER_PORT: ${AIRFLOW_PORT}
+      AIRFLOW_CREATE_USER_CONN: ${AIRFLOW_CREATE_USER_CONN}
+      AIRFLOW_EMAIL: ${AIRFLOW_EMAIL}
+      AIRFLOW_FIRST: ${AIRFLOW_FIRST}
+      AIRFLOW_LAST: ${AIRFLOW_LAST}
+      AIRFLOW_USER: ${AIRFLOW_USER}
+      AIRFLOW_PASSWORD: ${AIRFLOW_PASSWORD}
+      AIRFLOW_ROLE: ${AIRFLOW_ROLE}
+      TZ: UTC
+    ports:
+      - ${AIRFLOW_PORT}:${AIRFLOW_PORT}
+    entrypoint: bash /tienda-amiga-playground/docker/entrypoints/start_airflow_webserver.sh
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+      interval: 60s
+      timeout: 30s
+      retries: 3
+    volumes:
+      - ../tienda_amiga/dags/logs/:${AIRFLOW_LOG_FOLDER}
+      - ../tienda_amiga/dags/:${AIRFLOW_DAG_FOLDER}
+      - ../:/tienda-amiga-playground/
+      - type: bind
+        source: ../.env
+        target: /tienda-amiga-playground/.env
+    working_dir: /tienda-amiga-playground/
+    networks:
+      - tienda-amiga-network
+
+  # AIRFLOW SCHEDULER
+  airflow-scheduler:
+    container_name: ta-playground-airflow-scheduler
+    image: tienda-amiga-playground_base
+#    network_mode: bridge
+    restart: always
+    environment:
+      POSTGRES_CONN_ID: ${POSTGRES_CONN_ID}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      AIRFLOW_POSTGRES_PORT: ${AIRFLOW_POSTGRES_PORT}
+      AIRFLOW__CORE__BASE_LOG_FOLDER: ${AIRFLOW_LOG_FOLDER}
+      AIRFLOW__CORE__DAGS_FOLDER: ${AIRFLOW_DAG_FOLDER}
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: 0
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: "${POSTGRES_DIALECT_DRIVER}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${AIRFLOW_POSTGRES_PORT}/${AIRFLOW_POSTGRES_DB}"
+      TZ: UTC
+    command: poetry run airflow scheduler
+    volumes:
+      - ../tienda_amiga/dags/logs/:${AIRFLOW_LOG_FOLDER}
+      - ../tienda_amiga/dags/:${AIRFLOW_DAG_FOLDER}
+      - ../:/tienda-amiga-playground/
+      - type: bind
+        source: ../.env
+        target: /tienda-amiga-playground/.env
+    working_dir: /tienda-amiga-playground/
+    networks:
+      - tienda-amiga-network
+
+# VOLUMES
+volumes:
+  postgres-data:
+
+# NETWORKS
+networks:
+  tienda-amiga-network:
+    ipam:
+      driver: default
+      config:
+          - subnet: ${IP_SUBNET}/16

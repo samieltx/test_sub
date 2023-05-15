@@ -1,0 +1,24 @@
+[2023-05-12T16:36:47.057+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gnews_covid_dag.transform manual__2023-05-12T16:36:24.544272+00:00 [queued]>
+[2023-05-12T16:36:47.074+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gnews_covid_dag.transform manual__2023-05-12T16:36:24.544272+00:00 [queued]>
+[2023-05-12T16:36:47.075+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T16:36:47.076+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-05-12T16:36:47.079+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T16:36:47.141+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): transform> on 2023-05-12 16:36:24.544272+00:00
+[2023-05-12T16:36:47.147+0000] {standard_task_runner.py:55} INFO - Started process 11797 to run task
+[2023-05-12T16:36:47.152+0000] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'gnews_covid_dag', 'transform', 'manual__2023-05-12T16:36:24.544272+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpnc3u4_tu']
+[2023-05-12T16:36:47.156+0000] {standard_task_runner.py:83} INFO - Job 6: Subtask transform
+[2023-05-12T16:36:47.193+0000] {logging_mixin.py:137} WARNING - /opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/airflow/settings.py:250 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2023-05-12T16:36:47.256+0000] {task_command.py:389} INFO - Running <TaskInstance: gnews_covid_dag.transform manual__2023-05-12T16:36:24.544272+00:00 [running]> on host ae84a291cf74
+[2023-05-12T16:36:47.370+0000] {taskinstance.py:1516} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=gnews_covid_dag
+AIRFLOW_CTX_TASK_ID=transform
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-12T16:36:24.544272+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-12T16:36:24.544272+00:00
+[2023-05-12T16:36:47.678+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-12T16:36:47.689+0000] {taskinstance.py:1327} INFO - Marking task as SUCCESS. dag_id=gnews_covid_dag, task_id=transform, execution_date=20230512T163624, start_date=20230512T163647, end_date=20230512T163647
+[2023-05-12T16:36:47.766+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-05-12T16:36:47.791+0000] {taskinstance.py:2596} INFO - 1 downstream tasks scheduled from follow-on schedule check

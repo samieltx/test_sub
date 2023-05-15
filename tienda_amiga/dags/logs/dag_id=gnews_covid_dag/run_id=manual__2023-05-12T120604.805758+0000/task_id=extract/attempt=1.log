@@ -1,0 +1,26 @@
+[2023-05-12T12:06:16.479+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gnews_covid_dag.extract manual__2023-05-12T12:06:04.805758+00:00 [queued]>
+[2023-05-12T12:06:16.517+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gnews_covid_dag.extract manual__2023-05-12T12:06:04.805758+00:00 [queued]>
+[2023-05-12T12:06:16.518+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T12:06:16.518+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-05-12T12:06:16.588+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T12:06:16.719+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): extract> on 2023-05-12 12:06:04.805758+00:00
+[2023-05-12T12:06:16.725+0000] {standard_task_runner.py:55} INFO - Started process 9139 to run task
+[2023-05-12T12:06:16.729+0000] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'gnews_covid_dag', 'extract', 'manual__2023-05-12T12:06:04.805758+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmp6rx5kv7i']
+[2023-05-12T12:06:16.773+0000] {standard_task_runner.py:83} INFO - Job 2: Subtask extract
+[2023-05-12T12:06:16.881+0000] {logging_mixin.py:137} WARNING - /opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/airflow/settings.py:250 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2023-05-12T12:06:17.015+0000] {task_command.py:389} INFO - Running <TaskInstance: gnews_covid_dag.extract manual__2023-05-12T12:06:04.805758+00:00 [running]> on host ae84a291cf74
+[2023-05-12T12:06:17.353+0000] {taskinstance.py:1516} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=gnews_covid_dag
+AIRFLOW_CTX_TASK_ID=extract
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-12T12:06:04.805758+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-12T12:06:04.805758+00:00
+[2023-05-12T12:06:17.355+0000] {extract.py:57} INFO - Getting news from the GNews API... 
+
+[2023-05-12T12:06:35.759+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-12T12:06:35.768+0000] {taskinstance.py:1327} INFO - Marking task as SUCCESS. dag_id=gnews_covid_dag, task_id=extract, execution_date=20230512T120604, start_date=20230512T120616, end_date=20230512T120635
+[2023-05-12T12:06:35.867+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-05-12T12:06:35.889+0000] {taskinstance.py:2596} INFO - 1 downstream tasks scheduled from follow-on schedule check

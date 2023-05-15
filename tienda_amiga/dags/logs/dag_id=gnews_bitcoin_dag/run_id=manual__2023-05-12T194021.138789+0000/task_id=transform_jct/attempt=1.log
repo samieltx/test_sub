@@ -1,0 +1,49 @@
+[2023-05-12T19:40:57.696+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gnews_bitcoin_dag.transform_jct manual__2023-05-12T19:40:21.138789+00:00 [queued]>
+[2023-05-12T19:40:57.711+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gnews_bitcoin_dag.transform_jct manual__2023-05-12T19:40:21.138789+00:00 [queued]>
+[2023-05-12T19:40:57.713+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T19:40:57.714+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-05-12T19:40:57.715+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T19:40:57.755+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): transform_jct> on 2023-05-12 19:40:21.138789+00:00
+[2023-05-12T19:40:57.761+0000] {standard_task_runner.py:55} INFO - Started process 13944 to run task
+[2023-05-12T19:40:57.765+0000] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'gnews_bitcoin_dag', 'transform_jct', 'manual__2023-05-12T19:40:21.138789+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag_jct.py', '--cfg-path', '/tmp/tmpswbj1mbu']
+[2023-05-12T19:40:57.768+0000] {standard_task_runner.py:83} INFO - Job 12: Subtask transform_jct
+[2023-05-12T19:40:57.815+0000] {logging_mixin.py:137} WARNING - /opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/airflow/settings.py:250 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2023-05-12T19:40:57.886+0000] {task_command.py:389} INFO - Running <TaskInstance: gnews_bitcoin_dag.transform_jct manual__2023-05-12T19:40:21.138789+00:00 [running]> on host ae84a291cf74
+[2023-05-12T19:40:57.993+0000] {taskinstance.py:1516} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=gnews_bitcoin_dag
+AIRFLOW_CTX_TASK_ID=transform_jct
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-12T19:40:21.138789+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-12T19:40:21.138789+00:00
+[2023-05-12T19:40:58.025+0000] {taskinstance.py:1776} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/tienda-amiga-playground/tienda_amiga/transform_jct.py", line 6, in transform
+    df = pd.read_csv(DATA_DIR / "data_bitcoin.csv",usecols=['index','source_url','url','title','text','tags','authors','publish_date'])
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/util/_decorators.py", line 211, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/util/_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 950, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 605, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1442, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1753, in _make_engine
+    return mapping[engine](f, **self.options)
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 135, in __init__
+    self._validate_usecols_names(usecols, self.orig_names)
+  File "/opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/pandas/io/parsers/base_parser.py", line 917, in _validate_usecols_names
+    raise ValueError(
+ValueError: Usecols do not match columns, columns expected but not found: ['index']
+[2023-05-12T19:40:58.080+0000] {taskinstance.py:1327} INFO - Marking task as FAILED. dag_id=gnews_bitcoin_dag, task_id=transform_jct, execution_date=20230512T194021, start_date=20230512T194057, end_date=20230512T194058
+[2023-05-12T19:40:58.151+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 12 for task transform_jct (Usecols do not match columns, columns expected but not found: ['index']; 13944)
+[2023-05-12T19:40:58.178+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-05-12T19:40:58.224+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check

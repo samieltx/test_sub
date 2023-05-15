@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "tienda_amiga"
+version = "0.1.0"
+description = ""
+authors = ["foo <foo@bar.ai>"]
+readme = "README.md"
+packages = [{include = "tienda_amiga"}]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.10"
+pandas = "1.5.1"
+python-decouple = "^3.6"
+apache-airflow = "^2.5.2"
+psycopg2-binary = "^2.9.5"
+apache-airflow-providers-postgres = "^5.4.0"
+pgcli = "^3.5.0"
+gnews = "^0.2.7"
+feedparser = "^6.0.10"
+newspaper3k = "^0.2.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

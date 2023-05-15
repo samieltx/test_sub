@@ -1,0 +1,28 @@
+[2023-05-12T19:43:34.122+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gnews_bitcoin_dag.extract manual__2023-05-12T19:43:30.040740+00:00 [queued]>
+[2023-05-12T19:43:34.134+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gnews_bitcoin_dag.extract manual__2023-05-12T19:43:30.040740+00:00 [queued]>
+[2023-05-12T19:43:34.135+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T19:43:34.136+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-05-12T19:43:34.158+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-12T19:43:34.232+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): extract> on 2023-05-12 19:43:30.040740+00:00
+[2023-05-12T19:43:34.237+0000] {standard_task_runner.py:55} INFO - Started process 13996 to run task
+[2023-05-12T19:43:34.241+0000] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'gnews_bitcoin_dag', 'extract', 'manual__2023-05-12T19:43:30.040740+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag_jct.py', '--cfg-path', '/tmp/tmpbsiiw9zb']
+[2023-05-12T19:43:34.245+0000] {standard_task_runner.py:83} INFO - Job 13: Subtask extract
+[2023-05-12T19:43:34.316+0000] {logging_mixin.py:137} WARNING - /opt/.cache/virtualenvs/tienda-amiga-l3PB3FXG-py3.9/lib/python3.9/site-packages/airflow/settings.py:250 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2023-05-12T19:43:34.435+0000] {task_command.py:389} INFO - Running <TaskInstance: gnews_bitcoin_dag.extract manual__2023-05-12T19:43:30.040740+00:00 [running]> on host ae84a291cf74
+[2023-05-12T19:43:34.609+0000] {taskinstance.py:1516} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=gnews_bitcoin_dag
+AIRFLOW_CTX_TASK_ID=extract
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-12T19:43:30.040740+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-12T19:43:30.040740+00:00
+[2023-05-12T19:43:34.611+0000] {extract.py:57} INFO - Getting news from the GNews API... 
+
+[2023-05-12T19:43:49.986+0000] {extract.py:23} ERROR - Article `download()` failed with 403 Client Error: Max restarts limit reached for url: https://www.forbes.com/sites/digital-assets/2023/05/12/leak-reveals-secret-democrat-plan-for-a-game-changing-us-crypto-crackdown-that-could-hit-the-price-of-bitcoin-and-ethereum/ on URL https://news.google.com/rss/articles/CBMisgFodHRwczovL3d3dy5mb3JiZXMuY29tL3NpdGVzL2RpZ2l0YWwtYXNzZXRzLzIwMjMvMDUvMTIvbGVhay1yZXZlYWxzLXNlY3JldC1kZW1vY3JhdC1wbGFuLWZvci1hLWdhbWUtY2hhbmdpbmctdXMtY3J5cHRvLWNyYWNrZG93bi10aGF0LWNvdWxkLWhpdC10aGUtcHJpY2Utb2YtYml0Y29pbi1hbmQtZXRoZXJldW0v0gG2AWh0dHBzOi8vd3d3LmZvcmJlcy5jb20vc2l0ZXMvZGlnaXRhbC1hc3NldHMvMjAyMy8wNS8xMi9sZWFrLXJldmVhbHMtc2VjcmV0LWRlbW9jcmF0LXBsYW4tZm9yLWEtZ2FtZS1jaGFuZ2luZy11cy1jcnlwdG8tY3JhY2tkb3duLXRoYXQtY291bGQtaGl0LXRoZS1wcmljZS1vZi1iaXRjb2luLWFuZC1ldGhlcmV1bS9hbXAv?oc=5&hl=en-US&gl=US&ceid=US:en
+[2023-05-12T19:43:51.157+0000] {extract.py:23} ERROR - Article `download()` failed with 403 Client Error: Max restarts limit reached for url: https://www.forbes.com/sites/digital-assets/2023/05/10/have-the-floodgates-opened-excitement-building-as-10-trillion-crypto-price-earthquake-looms-for-bitcoin-and-ethereum/ on URL https://news.google.com/rss/articles/CBMirAFodHRwczovL3d3dy5mb3JiZXMuY29tL3NpdGVzL2RpZ2l0YWwtYXNzZXRzLzIwMjMvMDUvMTAvaGF2ZS10aGUtZmxvb2RnYXRlcy1vcGVuZWQtZXhjaXRlbWVudC1idWlsZGluZy1hcy0xMC10cmlsbGlvbi1jcnlwdG8tcHJpY2UtZWFydGhxdWFrZS1sb29tcy1mb3ItYml0Y29pbi1hbmQtZXRoZXJldW0v0gGwAWh0dHBzOi8vd3d3LmZvcmJlcy5jb20vc2l0ZXMvZGlnaXRhbC1hc3NldHMvMjAyMy8wNS8xMC9oYXZlLXRoZS1mbG9vZGdhdGVzLW9wZW5lZC1leGNpdGVtZW50LWJ1aWxkaW5nLWFzLTEwLXRyaWxsaW9uLWNyeXB0by1wcmljZS1lYXJ0aHF1YWtlLWxvb21zLWZvci1iaXRjb2luLWFuZC1ldGhlcmV1bS9hbXAv?oc=5&hl=en-US&gl=US&ceid=US:en
+[2023-05-12T19:43:53.799+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-12T19:43:53.810+0000] {taskinstance.py:1327} INFO - Marking task as SUCCESS. dag_id=gnews_bitcoin_dag, task_id=extract, execution_date=20230512T194330, start_date=20230512T194334, end_date=20230512T194353
+[2023-05-12T19:43:53.914+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-05-12T19:43:53.942+0000] {taskinstance.py:2596} INFO - 1 downstream tasks scheduled from follow-on schedule check
